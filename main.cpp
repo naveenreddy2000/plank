@@ -12,8 +12,10 @@ int main()
   std::ifstream fin;
   std::string line;
 
+  //loading font
   sf::Font font;
   font.loadFromFile("ARIAL.TTF");
+  //loading text
   sf::Text text, playerText;
   text.setFont(font);
   playerText.setFont(font);
@@ -25,6 +27,7 @@ int main()
   sf::RenderWindow app(sf::VideoMode(520, 420), "Arkanoid!");
   app.setFramerateLimit(60);
 
+  //Images required are embded
   sf::Texture t1, t2, t3, t4, t5;
   t1.loadFromFile("images/block01.png");
   t2.loadFromFile("images/background.jpg");
@@ -38,6 +41,7 @@ int main()
 
   sf::Sprite block[100];
 
+  //setting up the start of the game
   int n = 0;
   for (int i = 1; i <= 10; i++)
     for (int j = 1; j <= 10; j++)
@@ -47,17 +51,21 @@ int main()
       n++;
     }
 
+  // speed of ball
   float dx = 2, dy = -3;
+  // initial position of ball
   float x = 300, y = 300;
   int px = 280, py = 410, dp = 5;
   bool play = false, beginGame = false;
   int shift = 0;
   float option = 0;
 
+  // game loop
   while (app.isOpen())
   {
 
     sf::Event e;
+    // capturing event from the player
     while (app.pollEvent(e))
     {
 
@@ -78,6 +86,7 @@ int main()
     app.clear();
     app.draw(select);
 
+    // game on/off condition
     if (play == false)
     {
       text.setString("Press Enter!");
